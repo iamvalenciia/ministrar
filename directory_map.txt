@@ -1,0 +1,100 @@
+.
+├── backend
+│   ├── build
+│   │   ├── collections
+│   │   │   ├── posts
+│   │   │   │   ├── resolvers
+│   │   │   │   │   ├── interfaces.js
+│   │   │   │   │   ├── main.js
+│   │   │   │   │   ├── mutations.js
+│   │   │   │   │   └── querys.js
+│   │   │   │   └── typeDefs.js
+│   │   │   └── users
+│   │   │       ├── resolvers
+│   │   │       │   ├── interfaces.js
+│   │   │       │   ├── main.js
+│   │   │       │   ├── mutations.js
+│   │   │       │   └── querys.js
+│   │   │       └── typeDefs.js
+│   │   ├── graphql
+│   │   │   ├── resolvers.js
+│   │   │   └── typeDefs.js
+│   │   ├── helpers
+│   │   │   └── statusCodes.js
+│   │   └── server.js
+│   ├── nodemon.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── src
+│   │   ├── collections
+│   │   │   ├── posts
+│   │   │   │   ├── resolvers
+│   │   │   │   │   ├── interfaces.ts
+│   │   │   │   │   ├── main.ts
+│   │   │   │   │   ├── mutations.ts
+│   │   │   │   │   └── querys.ts
+│   │   │   │   └── typeDefs.ts
+│   │   │   └── users
+│   │   │       ├── resolvers
+│   │   │       │   ├── interfaces.ts
+│   │   │       │   ├── main.ts
+│   │   │       │   ├── mutations.ts
+│   │   │       │   └── querys.ts
+│   │   │       └── typeDefs.ts
+│   │   ├── graphql
+│   │   │   ├── resolvers.ts
+│   │   │   └── typeDefs.ts
+│   │   ├── helpers
+│   │   │   └── statusCodes.ts
+│   │   └── server.ts
+│   └── tsconfig.json
+├── directory_map.txt
+├── docker-compose.yml
+├── frontend
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public
+│   │   └── vite.svg
+│   ├── src
+│   │   ├── apolloClient.jsx
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── components
+│   │   │   ├── alerts.tsx
+│   │   │   ├── icons.tsx
+│   │   │   ├── login.tsx
+│   │   │   ├── navbar.tsx
+│   │   │   └── register.tsx
+│   │   ├── context
+│   │   ├── images
+│   │   │   ├── background.png
+│   │   │   ├── background10.jpeg
+│   │   │   ├── background2.png
+│   │   │   ├── background3.png
+│   │   │   ├── background4.png
+│   │   │   ├── background6.png
+│   │   │   ├── background7.png
+│   │   │   ├── background8.png
+│   │   │   ├── background9.png
+│   │   │   └── bakcground5.png
+│   │   ├── main.tsx
+│   │   ├── pages
+│   │   │   ├── dashboard.tsx
+│   │   │   └── homepage.tsx
+│   │   ├── routes.tsx
+│   │   ├── style
+│   │   │   ├── index.css
+│   │   │   └── loadingIcon.css
+│   │   ├── type
+│   │   │   └── vite-env.d.ts
+│   │   └── utility
+│   │       └── hooks.tsx
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+└── learning-notes.txt
+
+28 directories, 69 files

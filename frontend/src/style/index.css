@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*LOADING ICON*/
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-icon {
+  animation: rotate 2s infinite linear;
+}
+
+.loading-text {
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+  fill: #000000;
+  animation: loadingAnimation 1.5s infinite;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
