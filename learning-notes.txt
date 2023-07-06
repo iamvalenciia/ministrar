@@ -1,0 +1,56 @@
+The following command is usefull to create a directory map ignoring the node_module using bash:
+$ tree -I 'node_modules|dist' > directory_map.txt
+
+To build the Docker image, navigate to the directory containing the Dockerfile and run the following command:
+$ docker build -t abetterworld-image .
+
+Reference to work with containers:
+https://btholt.github.io/complete-intro-to-containers/
+
+How to use React or Vue with Vite and Docker (May 23, 2023)
+https://dev.to/ysmnikhil/how-to-build-with-react-or-vue-with-vite-and-docker-1a3l
+
+Run this command to build the image on your local machine 
+and start the container. You only need to run this command 
+the first time, and whenever you make changes to docker-compose.yml:
+$ docker-compose up --build --no-recreate -d
+
+------------RUN THIS--------------
+From the second time, we can use:
+$ docker-compose up -d
+
+To enter in my container:
+$ docker exec -it abetterworld sh
+
+To run the app:
+npm run dev
+----------------------------------
+
+---------- IF YOU CREATE THE IMAGE AGAIN ----------
+npm i && npm run dev
+
+--------------------------------------------------------------------------
+The size that matters for deployments in Docker is typically the virtual size of the container image
+To know the size of your container run this command:
+$ docker container ls -s
+
+The docker-compose files support declaring default environment variables in the .env file.
+
+
+--------------------------------------------------------REPORT
+ACHIEVEMENTS:
+- docker compose works perfect for the client side,
+- docker compose works perfect for the server side,
+
+PROBLEMS:
+
+    
+DETAILS:
+
+
+POSIBLE SOLUTIONS:
+
+
+AFTER RESOLVE THE PROBLEMS:
+Learn ability to build and ship software reliably through automation and monitoring.
+https://frontendmasters.com/courses/devops/

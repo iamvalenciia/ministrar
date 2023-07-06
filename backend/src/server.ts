@@ -36,9 +36,7 @@ const startServer = async () => {
                 const usersCollection = db.collection('users');
                 const postsCollection = db.collection('posts');
                 const authorizationHeader = req.headers.authorization || '';
-                console.log(`authorizationHeader: ${authorizationHeader}`);
                 const token = authorizationHeader.replace('Bearer ', '');
-                console.log(`token: ${token}`);
                 let user = null;
                 let userId = null;
 

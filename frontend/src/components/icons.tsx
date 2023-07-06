@@ -1,4 +1,4 @@
-import "../style/loadingIcon.css"; // Import the CSS file
+import "../styles/loadingIcon.css"; // Import the CSS file
 
 // icon: bx-home-circle | Boxicons https://boxicons.com/ | Atisa
 export function CheckIcon() {

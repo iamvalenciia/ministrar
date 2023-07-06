@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./style/index.css";
+import "./styles/index.css";
 import App from "./routes";
-import { client } from "./apolloClient";
+import { client } from "./client";
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
 
@@ -16,5 +16,6 @@ root.render(
         <App />
       </React.StrictMode>
     </BrowserRouter>
+    +
   </ApolloProvider>
 );

@@ -28,7 +28,7 @@ services:
     working_dir: /srv/app
     volumes:
       - type: bind
-        source: ./backend 
+        source: ./backend
         target: /srv/app
     tty: true
 networks:
