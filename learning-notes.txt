@@ -42,9 +42,11 @@ ACHIEVEMENTS:
 - docker compose works perfect for the client side,
 - docker compose works perfect for the server side,
 
-PROBLEMS:
-
-    
+ISSUE:
+-Finish the login system, to navigate with barer token header without problem
+-Add footer,
+-Add website information 
+-Fix return when register and loggin in the data-server
 DETAILS:
 
 

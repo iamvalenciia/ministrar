@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DeleteIcon, Loading } from "./icons";
+import { DeleteIcon, LoadingIcon } from "./icons";
 import { ApolloError } from "@apollo/client";
 
 interface AlertsProps {
@@ -31,9 +31,9 @@ const Alerts = ({ error, data, loading }: AlertsProps) => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center bg-opacity-80 p-4 rounded-lg">
+      <div className="flex items-end justify-end bg-opacity-80 p-4 rounded-lg">
         <div className="flex">
-          <Loading />
+          <LoadingIcon size={50} />
         </div>
       </div>
     );

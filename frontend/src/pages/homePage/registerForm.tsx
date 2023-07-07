@@ -46,7 +46,7 @@ export default function Register({
       >
         <h2 className="text-2xl font-bold mb-4">Register</h2>
         <div className="mb-4">
-          <label htmlFor="username" className="block sr-only">
+          <label htmlFor="name" className="block sr-only">
             name
           </label>
           <input
@@ -91,12 +91,12 @@ export default function Register({
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block sr-only">
+          <label htmlFor="emailRegister" className="block sr-only">
             Email
           </label>
           <input
             type="email"
-            id="email"
+            id="emailRegister"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={inputStyle}
@@ -106,12 +106,12 @@ export default function Register({
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="password" className="block sr-only">
+          <label htmlFor="passwordRegister" className="block sr-only">
             Password
           </label>
           <input
             type="password"
-            id="password"
+            id="passwordRegister"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className={inputStyle}

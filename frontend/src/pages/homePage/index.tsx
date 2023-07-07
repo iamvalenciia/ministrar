@@ -1,6 +1,7 @@
 import { useState, FormEvent, useEffect } from "react";
 import LoginForm from "./loginForm";
 import RegisterForm from "./registerForm";
+import Footer from "./footer";
 import backgroundImage from "../../images/background9.png";
 import Alerts from "../../components/alerts";
 import { useMutation, gql } from "@apollo/client";
@@ -66,51 +67,58 @@ export default function Homepage() {
   /*LOGIN LOGIC*/
   const [loginEmail, setEmailLogin] = useState("");
   const [LoginPassword, setPasswordLogin] = useState("");
-
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      <div
-        className="relative flex items-center justify-center flex-grow"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="container mx-auto px-4">
-          <div className="absolute top-0 right-0 m-4">
-            <Alerts error={error} data={data} loading={loading} />
-          </div>
-
-          <div className="flex flex-col md:flex-row mt-8">
-            <div className="w-full md:w-1/2 mx-auto">
-              <RegisterForm
-                name={name}
-                gender={gender}
-                username={username}
-                email={email}
-                password={password}
-                setName={setName}
-                setGender={setGender}
-                setUsername={setUsername}
-                setEmail={setEmail}
-                setPassword={setPassword}
-                handleSubmit={handleSubmit}
-              />
-            </div>
-
-            <div className="w-full md:w-1/2 mx-auto mt-4 md:mt-0">
-              <LoginForm
-                email={loginEmail}
-                password={LoginPassword}
-                setEmail={setEmailLogin}
-                setPassword={setPasswordLogin}
-                handleSubmit={handleSubmit}
-              />
-            </div>
-          </div>
+    <div
+      className="flex flex-col min-h-screen bg-gray-100"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <header className="grid lg:grid-cols-6 md:grid-cols-3">
+        <div className="xl:col-start-6 xl:col-end-8 lg:col-start-6 lg:col-end-7 sm:row-start-1 sm:row-end-2 md:row-start-1 md:row-end-2 sm:col-start-3 md:col-end-4 container mx-auto px-4 pt-4">
+          <Alerts error={error} data={data} loading={loading} />
         </div>
-      </div>
+        <div className="xl:col-start-3 xl:col-end-5 lg:col-start-3 lg:col-end-5 sm:row-start-1 sm:row-end-2 md:row-start-1 md:row-end-2 sm:col-start-2 md:col-end-3 container px-4 pt-4 pb-8 text-center">
+          <h1 className="text-4xl xl:text-6xl logo">To Minister</h1>
+          <p className="text-xl logo-text">A Collaborative Help Platform</p>
+        </div>
+      </header>
+
+      <main className="container mx-auto my-auto px-4 grid gap-8 md:grid-cols-2">
+        <div>
+          <RegisterForm
+            name={name}
+            gender={gender}
+            username={username}
+            email={email}
+            password={password}
+            setName={setName}
+            setGender={setGender}
+            setUsername={setUsername}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            handleSubmit={handleSubmit}
+          />
+        </div>
+
+        <div>
+          <LoginForm
+            email={loginEmail}
+            password={LoginPassword}
+            setEmail={setEmailLogin}
+            setPassword={setPasswordLogin}
+            handleSubmit={handleSubmit}
+          />
+        </div>
+      </main>
+
+      <footer>
+        <div className="container mx-auto px-4 py-4">
+          <Footer />
+        </div>
+      </footer>
     </div>
   );
 }
