@@ -1,38 +1,42 @@
-import { UserIcon } from "../../components/icons";
+import {
+  UserIcon,
+  IconBasic_eye,
+  IconBasic_eye_closed,
+} from "../../components/icons";
 import { FormEvent } from "react";
 
 interface RegisterProps {
   name: string;
-  gender: string;
   username: string;
   email: string;
   password: string;
+  showPassword: boolean;
   setName: (name: string) => void;
-  setGender: (gender: string) => void;
   setUsername: (username: string) => void;
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
   handleSubmit: (e: FormEvent) => void;
+  setShowPassword: (showPassword: boolean) => void;
 }
 
 export default function Register({
   name,
-  gender,
   username,
   email,
   password,
   setName,
-  setGender,
   setUsername,
   setEmail,
   setPassword,
   handleSubmit,
+  showPassword,
+  setShowPassword,
 }: RegisterProps) {
   const inputStyle =
-    "w-full px-2 py-1 rounded-md focus:outline-none text-lg placeholder-gray-800";
+    "w-full px-2 py-1 rounded-md focus:outline-none text-lg placeholder-gray-400";
   const inputBackground = {
-    background: "rgba(255, 255, 255, 0.2)",
-    color: "white",
+    background: "rgb(112,128,144, 0.2)",
+    color: "black",
   };
   return (
     <div className="flex flex-col items-center justify-center">
@@ -40,8 +44,9 @@ export default function Register({
         onSubmit={handleSubmit}
         className="rounded-lg shadow-lg p-6"
         style={{
-          background: "rgba(25, 99, 148, 0.9)",
-          color: "white",
+          background: "rgba(255, 255, 255)",
+          border: "1px solid black",
+          color: "black",
         }}
       >
         <h2 className="text-2xl font-bold mb-4">Register</h2>
@@ -57,21 +62,6 @@ export default function Register({
             className={inputStyle}
             style={inputBackground}
             placeholder="name"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="gender" className="block sr-only">
-            Gender
-          </label>
-          <input
-            type="text"
-            id="gender"
-            value={gender}
-            onChange={(e) => setGender(e.target.value)}
-            className={inputStyle}
-            style={inputBackground}
-            placeholder="gender"
             required
           />
         </div>
@@ -105,27 +95,35 @@ export default function Register({
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <label htmlFor="passwordRegister" className="block sr-only">
             Password
           </label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="passwordRegister"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className={inputStyle}
+            className="w-12/12 px-2 py-1 rounded-md focus:outline-none text-lg placeholder-gray-400"
             style={inputBackground}
             placeholder="password"
             required
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute top-0 right-0 h-full  text-gray-400 font-bold px-2 rounded-r hover:text-gray-950 transition-colors transform"
+          >
+            {showPassword ? <IconBasic_eye /> : <IconBasic_eye_closed />}
+          </button>
         </div>
+
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="flex items-center bg-#1E629C border text-yellow-50 font-bold py-2 px-2 rounded-md hover:bg-yellow-50 hover:text-gray-700 transition-colors"
+            className="flex items-center bg-gray-950  text-gray-50 font-bold py-2 px-2 rounded-md hover:bg-gray-700 hover:text-gray-50 transition-colors"
           >
-            <UserIcon className="hover:fill-gray-700 mx-2" />
+            <UserIcon className="mx-2" />
             <span className="mr-2"> Sign Up </span>
           </button>
         </div>

@@ -17,9 +17,10 @@ export default function LoginForm({
   setPassword,
 }: LoginProps) {
   const inputStyle =
-    "w-full px-2 py-1 rounded-md focus:outline-none text-lg placeholder-gray-200 text-gray-800";
+    "w-full px-2 py-1 rounded-md focus:outline-none text-lg placeholder-gray-400";
   const inputBackground = {
-    background: "rgba(255, 255, 255, 0.2)",
+    background: "rgb(112,128,144, 0.2)",
+    color: "black",
   };
   return (
     <div className="flex flex-col items-center justify-center">
@@ -27,16 +28,14 @@ export default function LoginForm({
         onSubmit={handleSubmit}
         className="rounded-lg shadow-lg p-6 first-letter"
         style={{
-          background: "rgba(244, 126, 17, 0.9)",
-          color: "white",
+          background: "rgba(255, 255, 255)",
+          border: "1px solid black",
+          color: "black",
         }}
       >
         <div className="flex gap-5 items-center font-semibold">
           <h2 className="text-2xl font-bold mb-4">Login</h2>
-          <a
-            href="/"
-            className="hover:underline hover:text-gray-50 text-md mb-4"
-          >
+          <a href="/" className="hover:underline text-md mb-4">
             Forgot password?
           </a>
         </div>
@@ -79,16 +78,16 @@ export default function LoginForm({
             id="rememberMe"
             // checked={rememberMe}
             // onChange={handleRememberMeChange}
-            className="mr-2 accent-yellow-50 h-4 w-4 rounded cursor-pointer"
+            className="mr-2 accent-gray-900 h-4 w-4 rounded cursor-pointer"
           />
           <div className="text-lg font-semibold">Remember me</div>
         </div>
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="flex items-center bg-#1E629C border text-yellow-50 font-bold py-2 px-2 rounded-md hover:bg-yellow-50 hover:text-gray-700 transition-colors"
+            className="flex items-center bg-gray-950  text-gray-50 font-bold py-2 px-2 rounded-md hover:bg-gray-700 hover:text-gray-50 transition-colors"
           >
-            <UserIcon className="hover:fill-gray-700 mx-2" />
+            <UserIcon className="mx-2" />
             <span className="mr-2"> Sign In </span>
           </button>
         </div>

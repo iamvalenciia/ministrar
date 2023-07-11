@@ -5,6 +5,7 @@ import { ObjectId } from 'mongodb';
 import { GraphQLError } from 'graphql';
 import { SuccessfullyCreated, UserInput, User, LoginUser } from './interfaces';
 import { err400, err401 } from '../../../helpers/statusCodes';
+import { validatePassword } from '../../../helpers/validation';
 import { error } from 'console';
 
 dotenv.config();
@@ -17,54 +18,46 @@ export const Mutations = {
             _: any,
             { registerInput }: { registerInput: UserInput },
             context: any
-        ): Promise<User> {
+        ) {
             console.log('registerUser resolver:');
             console.log(registerInput);
 
-            const { name, userName, email, password, gender } = registerInput;
+            const { name, userName, email, password } = registerInput;
             const existingEmailUser = await context.usersCollection.findOne({
                 email
             });
             if (existingEmailUser) {
-                throw new GraphQLError('Email already exists.', err400);
+                throw new GraphQLError('email already exists.', err400);
             }
             const existingUsernameUser = await context.usersCollection.findOne({
                 userName
             });
             if (existingUsernameUser) {
-                throw new GraphQLError('Username already exists.', err400);
+                throw new GraphQLError('username already exists.', err400);
+            }
+            const isPasswordValid = validatePassword(password);
+            if (!isPasswordValid) {
+                throw new GraphQLError(
+                    'Invalid password. Password must be at least 8 characters long and include uppercase, lowercase, numbers, and special characters.',
+                    err400
+                );
             }
             const encryptedpassword = await bcrypt.hash(password, 10);
             const user_id = new ObjectId();
-            const token = jwt.sign({ user_id, email }, jwtKey, {
-                expiresIn: '2h'
-            });
             const newUser: UserInput = {
                 _id: user_id,
                 name,
                 userName,
                 email,
                 password: encryptedpassword,
-                gender,
                 followersCount: 0,
                 followingCount: 0,
-                token: token
+                token: ''
             };
             try {
                 const result = await context.usersCollection.insertOne(newUser);
                 console.log(`result variable: ${JSON.stringify(result)}`);
-
-                if (result.acknowledged == true) {
-                    const createdUser = await context.usersCollection.findOne({
-                        _id: result.insertedId
-                    });
-                    console.log(
-                        `returning createdUser variable: ${JSON.stringify(
-                            createdUser
-                        )}`
-                    );
-                    return createdUser;
-                }
+                return result.acknowledged;
             } catch (error: any) {
                 if (error.code == 121) {
                     throw new GraphQLError(
@@ -76,7 +69,6 @@ export const Mutations = {
                 }
                 return error;
             }
-            console.log(error);
         },
         // LOGIN USER
         async loginUser(
@@ -143,13 +135,12 @@ export const Mutations = {
             { id, editUserInput }: { id: string; editUserInput: UserInput },
             context: any
         ): Promise<boolean> {
-            const { name, userName, email, password, gender } = editUserInput;
+            const { name, userName, email, password } = editUserInput;
             const updatedUser: UserInput = {
                 name,
                 userName,
                 email,
                 password,
-                gender,
                 followersCount: 0,
                 followingCount: 0
             };

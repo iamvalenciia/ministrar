@@ -5,7 +5,6 @@ export interface User {
     userName?: string;
     email?: string;
     password?: string;
-    gender?: string;
     followersCount?: number;
     followingCount?: number;
     token?: string;
@@ -31,7 +30,6 @@ export interface UserInput {
     password?: string;
     plainTextPassword?: string;
     encryptedPassword?: string;
-    gender?: string;
     followersCount?: number;
     followingCount?: number;
     token?: string;

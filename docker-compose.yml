@@ -6,8 +6,6 @@ services:
     entrypoint: /bin/sh
     ports:
       - 8000:8000
-    networks:
-      - abw_client
     working_dir: /srv/app
     volumes:
       - type: bind
@@ -22,15 +20,10 @@ services:
     entrypoint: /bin/sh
     ports:
       - 7000:7000
-    networks:
-      - abw_backend
-      - abw_client
     working_dir: /srv/app
     volumes:
       - type: bind
         source: ./backend
         target: /srv/app
     tty: true
-networks:
-  abw_client:
-  abw_backend:
+

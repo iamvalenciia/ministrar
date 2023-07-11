@@ -5,7 +5,7 @@ import { ApolloError } from "@apollo/client";
 interface AlertsProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error: ApolloError | any | unknown | undefined;
-  data: unknown;
+  data: { registerUser: boolean } | unknown;
   loading: boolean;
 }
 
@@ -19,7 +19,7 @@ const Alerts = ({ error, data, loading }: AlertsProps) => {
         error.networkError.result.errors[0]?.message || error.message;
       setAlertMessage(errorMessage);
       setIsError(true);
-    } else if (data) {
+    } else if ((data as { registerUser: boolean })?.registerUser) {
       setAlertMessage("Registration successful! Log in to get started.");
       setIsError(false);
     }
@@ -44,11 +44,12 @@ const Alerts = ({ error, data, loading }: AlertsProps) => {
 
     return (
       <div
-        className={`flex items-center justify-center ${alertClass} bg-opacity-80 p-4 rounded-lg`}
+        className={`flex items-center justify-center ${alertClass} bg-opacity-90 p-4 rounded-lg`}
       >
         <div className="text-white">{alertMessage}</div>
         <button onClick={handleCloseAlert} className="ml-2 text-white">
           <DeleteIcon />
+          <span className="mr-2 sr-only"> Delete Button </span>
         </button>
       </div>
     );

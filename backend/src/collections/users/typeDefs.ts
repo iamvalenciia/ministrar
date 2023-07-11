@@ -67,10 +67,6 @@ export const typeDefs = `#graphql
         The password of the user.
         """
         password: String
-        """
-        The gender of the user.
-        """
-        gender: String
     }
 
     extend type Query {
@@ -88,7 +84,7 @@ export const typeDefs = `#graphql
         """
         Register a new user with the provided input values.
         """
-        registerUser(registerInput: RegisterInput): User!
+        registerUser(registerInput: RegisterInput): Boolean!
         """
         Login user with the provided credentials 
         """
