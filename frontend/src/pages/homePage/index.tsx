@@ -2,7 +2,7 @@ import { useState, FormEvent, useEffect } from "react";
 import LoginForm from "./loginForm";
 import RegisterForm from "./registerForm";
 import Footer from "./footer";
-import backgroundImage from "../../images/background9-01.png";
+// import backgroundImage from "../../images/background9-01.png";
 import Alerts from "../../components/alerts";
 import { useMutation, gql } from "@apollo/client";
 
@@ -57,12 +57,12 @@ export default function Homepage() {
   const [LoginPassword, setPasswordLogin] = useState("");
   return (
     <div
-      className="flex flex-col min-h-screen bg-gray-100 bg-opacity-30"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="flex flex-col min-h-screen bg-gray-200"
+      // style={{
+      //   backgroundImage: `url(${backgroundImage})`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      // }}
     >
       <header className="grid lg:grid-cols-6 md:grid-cols-3">
         <div className="xl:col-start-5 xl:col-end-8 lg:col-start-5 lg:col-end-7 sm:row-start-1 sm:row-end-2 md:row-start-1 md:row-end-2 sm:col-start-3 md:col-end-4 container mx-auto px-4 pt-4">

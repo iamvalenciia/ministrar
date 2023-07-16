@@ -40,7 +40,7 @@ const Alerts = ({ error, data, loading }: AlertsProps) => {
   }
 
   if (alertMessage) {
-    const alertClass = isError ? "bg-red-500" : "bg-green-500";
+    const alertClass = isError ? "bg-gray-400" : "bg-gray-400";
 
     return (
       <div

@@ -43,11 +43,7 @@ ACHIEVEMENTS:
 - docker compose works perfect for the server side,
 
 ISSUE:
--Finish the login system, to navigate with barer token header without problem
--Add footer,
--Add website information 
--Fix return when register and loggin in the data-server
-DETAILS:
+- 
 
 
 POSIBLE SOLUTIONS:
@@ -56,3 +52,10 @@ POSIBLE SOLUTIONS:
 AFTER RESOLVE THE PROBLEMS:
 Learn ability to build and ship software reliably through automation and monitoring.
 https://frontendmasters.com/courses/devops/
+
+    Because now in the service-directory when we make a { $pulumi up } we are getting a error which is AWS authentication
+
+    - Before to continue working with Pulumi aws, go to the bank to fix your credit card.
+    - deposit 5 dollars in the bank account.
+    - Get AWS authentication keys.
+    - Setup the project with polumi aws.
