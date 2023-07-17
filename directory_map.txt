@@ -20,9 +20,9 @@
 │   │   │   ├── resolvers.js
 │   │   │   └── typeDefs.js
 │   │   ├── helpers
-│   │   │   └── statusCodes.js
+│   │   │   ├── statusCodes.js
+│   │   │   └── validation.js
 │   │   └── server.js
-│   ├── nodemon.json
 │   ├── package-lock.json
 │   ├── package.json
 │   ├── src
@@ -45,7 +45,8 @@
 │   │   │   ├── resolvers.ts
 │   │   │   └── typeDefs.ts
 │   │   ├── helpers
-│   │   │   └── statusCodes.ts
+│   │   │   ├── statusCodes.ts
+│   │   │   └── validation.ts
 │   │   └── server.ts
 │   └── tsconfig.json
 ├── directory_map.txt
@@ -58,15 +59,12 @@
 │   ├── public
 │   │   └── vite.svg
 │   ├── src
-│   │   ├── apolloClient.jsx
 │   │   ├── assets
 │   │   │   └── react.svg
+│   │   ├── client.jsx
 │   │   ├── components
 │   │   │   ├── alerts.tsx
-│   │   │   ├── icons.tsx
-│   │   │   ├── login.tsx
-│   │   │   ├── navbar.tsx
-│   │   │   └── register.tsx
+│   │   │   └── icons.tsx
 │   │   ├── context
 │   │   ├── images
 │   │   │   ├── background.png
@@ -77,24 +75,47 @@
 │   │   │   ├── background6.png
 │   │   │   ├── background7.png
 │   │   │   ├── background8.png
+│   │   │   ├── background9-0-1.png
+│   │   │   ├── background9-0-2.png
+│   │   │   ├── background9-0.png
+│   │   │   ├── background9-01.png
+│   │   │   ├── background9-1.png
+│   │   │   ├── background9-2.png
+│   │   │   ├── background9-3.png
+│   │   │   ├── background9-4.png
+│   │   │   ├── background9-5.png
+│   │   │   ├── background9-6.png
+│   │   │   ├── background9-7.png
 │   │   │   ├── background9.png
 │   │   │   └── bakcground5.png
 │   │   ├── main.tsx
 │   │   ├── pages
-│   │   │   ├── dashboard.tsx
-│   │   │   └── homepage.tsx
+│   │   │   ├── dashBoard
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── navbar.tsx
+│   │   │   └── homePage
+│   │   │       ├── footer.tsx
+│   │   │       ├── index.tsx
+│   │   │       ├── loginForm.tsx
+│   │   │       └── registerForm.tsx
 │   │   ├── routes.tsx
-│   │   ├── style
-│   │   │   ├── index.css
-│   │   │   └── loadingIcon.css
-│   │   ├── type
-│   │   │   └── vite-env.d.ts
-│   │   └── utility
-│   │       └── hooks.tsx
+│   │   ├── styles
+│   │   │   └── index.css
+│   │   └── vite-env.d.ts
 │   ├── tailwind.config.js
 │   ├── tsconfig.json
 │   ├── tsconfig.node.json
 │   └── vite.config.ts
-└── learning-notes.txt
+├── learning-notes.txt
+└── service-directory
+    ├── Pulumi.dev.yaml
+    ├── Pulumi.yaml
+    ├── index.ts
+    ├── package-lock.json
+    ├── package.json
+    ├── resources
+    │   └── bucket.ts
+    ├── services
+    └── tsconfig.json
 
-28 directories, 69 files
+31 directories, 87 files

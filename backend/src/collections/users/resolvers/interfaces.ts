@@ -4,7 +4,6 @@ export interface User {
     name?: string;
     userName?: string;
     email?: string;
-    password?: string;
     followersCount?: number;
     followingCount?: number;
     token?: string;

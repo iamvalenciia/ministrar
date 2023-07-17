@@ -41,9 +41,14 @@ The docker-compose files support declaring default environment variables in the 
 ACHIEVEMENTS:
 - docker compose works perfect for the client side,
 - docker compose works perfect for the server side,
+- login, register, LogOut, token with local storage, 
 
-ISSUE:
-- 
+TO IMPROVE THE SECURITY:
+Long-lived Access Tokens: When you initially log in to Facebook, 
+you receive a short-lived access token that typically expires in a few hours. 
+However, Facebook provides a way to exchange this short-lived token for a 
+long-lived access token, which can last up to 60 days. This allows you to 
+stay logged in to Facebook without the need for frequent reauthentication.
 
 
 POSIBLE SOLUTIONS:

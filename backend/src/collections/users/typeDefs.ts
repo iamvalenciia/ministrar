@@ -20,14 +20,6 @@ export const typeDefs = `#graphql
         """
         email: String
         """
-        The password of the user.
-        """
-        password: String
-        """
-        The gender of the user.
-        """
-        gender: String
-        """
         The number of followers of the user.
         """
         followersCount: Int

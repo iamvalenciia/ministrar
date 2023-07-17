@@ -79,33 +79,45 @@ export const Mutations = {
             try {
                 const { email, password } = loginInput;
 
-                // Check if the email already exists
-                const user = await context.usersCollection.findOne({ email });
-
+                // Check if a user with that email exists
+                const userEmail = await context.usersCollection.findOne({
+                    email
+                });
                 // Check if the password is correct
-                if (user && (await bcrypt.compare(password, user.password))) {
-                    // Create a new JWT with user ID and email
-                    const token = jwt.sign(
-                        { user_id: user._id, email: user.email },
-                        jwtKey,
-                        { expiresIn: '2h' }
-                    );
+                const isPasswordValid = await bcrypt.compare(
+                    password,
+                    userEmail.password
+                );
 
-                    // Update the user with the generated token
-                    await context.usersCollection.updateOne(
-                        { _id: new ObjectId(user._id) },
-                        { $set: { token } }
-                    );
-
-                    // Retrieve the updated user with the generated token
-                    const loggedInUser = await context.usersCollection.findOne({
-                        _id: user._id
-                    });
-
-                    return loggedInUser;
+                if (!userEmail) {
+                    throw error;
+                } else if (!isPasswordValid) {
+                    throw error;
                 }
+
+                // Create a new JWT with user ID and email
+                const token = jwt.sign(
+                    { user_id: userEmail._id, email: userEmail.email },
+                    jwtKey,
+                    { expiresIn: '2h' }
+                );
+
+                // Update the user with the generated token
+                await context.usersCollection.updateOne(
+                    { _id: new ObjectId(userEmail._id) },
+                    { $set: { token } }
+                );
+
+                // Retrieve the updated user with the generated token
+                const loggedInUser = await context.usersCollection.findOne({
+                    _id: userEmail._id
+                });
+
+                return loggedInUser;
             } catch (error) {
-                throw new GraphQLError('Incorrect password', err400);
+                throw new Error(
+                    'The email or password you entered is incorrect. Please make sure you have entered the correct credentials and try again.'
+                );
             }
         },
         // LOGOUT USER
@@ -114,15 +126,19 @@ export const Mutations = {
                 // Check if the user is authenticated
                 if (!context.user) {
                     throw new GraphQLError(
-                        'User must log in before loging out.',
+                        'User must log in before logging out.',
                         err401
                     );
                 }
+                console.log(context.userId);
                 // Remove the token from the user in the database
-                const removeToken = await context.usersCollection.updateOne(
-                    { _id: new ObjectId(context.userId) },
-                    { $set: { token: '' } }
-                );
+                const removeToken =
+                    await context.usersCollection.findOneAndUpdate(
+                        { _id: new ObjectId(context.userId) },
+                        { $set: { token: '' } } // Unset the token field
+                    );
+                console.log(removeToken);
+
                 // Return true to indicate successful logout
                 return true;
             } catch (error: any) {

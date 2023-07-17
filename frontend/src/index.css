@@ -36,21 +36,3 @@
     opacity: 0;
   }
 }
-
-/* LOGO STYLE*/
-.logo {
-  color: black;
-  background-color: rgb(254, 254, 255);
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  border-radius: 50% 0 0 0;
-  padding-top: 20px;
-}
-
-.logo-text {
-  color: black;
-  background-color: rgb(254, 254, 255);
-  font-family: "Montserrat", sans-serif;
-  border-radius: 0 0 50% 0;
-  padding-bottom: 20px;
-}

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import dotenv from 'dotenv';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { GraphQLError } from 'graphql';
@@ -8,6 +7,7 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 import { MongoClient, ObjectId } from 'mongodb';
 import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
+import { err401 } from './helpers/statusCodes';
 dotenv.config();
 
 const PORT = Number.parseInt(process.env.PORT);
@@ -37,8 +37,8 @@ const startServer = async () => {
                 const postsCollection = db.collection('posts');
                 const authorizationHeader = req.headers.authorization || '';
                 const token = authorizationHeader.replace('Bearer ', '');
-                let user = null;
-                let userId = null;
+                let userId: string | undefined;
+                let user: any | undefined;
 
                 if (token) {
                     try {
@@ -47,19 +47,31 @@ const startServer = async () => {
                             token,
                             process.env.JWT_SECRET_KEY
                         ) as JwtPayload;
-                        console.log(`decodedToken: ${decodedToken}`);
+
                         // Extract user information from the decoded token
-                        const { user_id, email } = decodedToken;
+                        const { user_id } = decodedToken;
                         userId = user_id;
                         user = await usersCollection.findOne({
-                            _id: new ObjectId(user_id)
+                            _id: new ObjectId(user_id),
+                            token // Check if the token in the database matches the token from the request
                         });
-                        console.log(`user: ${user}`);
+
+                        if (!user) {
+                            // Token exists but user not found or token mismatch, indicating unauthorized access
+                            throw new GraphQLError(
+                                'Unauthorized access',
+                                err401
+                            );
+                        }
                     } catch (error) {
-                        console.error('Error decoding token:', error);
+                        console.error(
+                            'Error decoding or validating token:',
+                            error
+                        );
+                        // Token is invalid or expired, indicating unauthorized access
+                        throw new GraphQLError('Unauthorized access', err401);
                     }
                 }
-
                 return { userId, user, usersCollection, postsCollection };
             },
             listen: { port: PORT }
