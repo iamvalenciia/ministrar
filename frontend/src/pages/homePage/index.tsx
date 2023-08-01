@@ -14,11 +14,15 @@ export default function HomePage() {
             registerUser(registerInput: $registerInput)
         }
     `;
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
+
+    const [registerForm, setRegisterForm] = useState({
+        username: '',
+        email: '',
+        password: '',
+        name: '',
+        showPassword: false
+    });
+
     const [registerUser, { loading, error, data }] = useMutation(
         REGISTER_USER,
         {
@@ -30,27 +34,30 @@ export default function HomePage() {
             }
         }
     );
-    const handleSubmit = (e: FormEvent) => {
+    const handleRegisterSubmit = (e: FormEvent) => {
         e.preventDefault();
         registerUser({
             variables: {
                 registerInput: {
-                    name: name,
-                    userName: username,
-                    email: email,
-                    password: password
+                    name: registerForm.name,
+                    userName: registerForm.username,
+                    email: registerForm.email,
+                    password: registerForm.password
                 }
             }
         });
     };
     useEffect(() => {
         if (data) {
-            setName('');
-            setUsername('');
-            setEmail('');
-            setPassword('');
+            setRegisterForm({
+                ...registerForm,
+                name: '',
+                username: '',
+                email: '',
+                password: ''
+            });
         }
-    }, [data]);
+    }, [data, registerForm]);
 
     /*--------------*/
     /* LOGIN LOGIC  */
@@ -109,7 +116,7 @@ export default function HomePage() {
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-200">
+        <div className="flex min-h-screen flex-col bg-gray-200">
             <Header
                 error={error}
                 data={data}
@@ -118,20 +125,12 @@ export default function HomePage() {
                 loginData={loginData}
                 loginLoading={loginLoading}
             />
-            <main className="container mx-auto my-auto px-4 grid gap-8 md:grid-cols-2">
+            <main className="container mx-auto my-auto grid gap-8 px-4 md:grid-cols-2">
                 <div>
                     <RegisterForm
-                        name={name}
-                        username={username}
-                        email={email}
-                        password={password}
-                        setName={setName}
-                        setUsername={setUsername}
-                        setEmail={setEmail}
-                        setPassword={setPassword}
-                        handleSubmit={handleSubmit}
-                        showPassword={showPassword}
-                        setShowPassword={setShowPassword}
+                        registerForm={registerForm}
+                        setRegisterForm={setRegisterForm}
+                        handleRegisterSubmit={handleRegisterSubmit}
                     />
                 </div>
                 <div>

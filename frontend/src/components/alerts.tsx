@@ -61,7 +61,7 @@ const Alerts = ({
 
     if (loading || loginLoading) {
         return (
-            <div className="flex items-end justify-end bg-opacity-80 p-4 rounded-lg">
+            <div className="flex items-end justify-end rounded-lg bg-opacity-80 p-4">
                 <div className="flex">
                     <LoadingIcon size={50} />
                 </div>
@@ -74,11 +74,11 @@ const Alerts = ({
 
         return (
             <div
-                className={`flex items-center justify-center ${alertClass} bg-opacity-90 p-4 rounded-lg`}>
+                className={`flex items-center justify-center ${alertClass} rounded-lg bg-opacity-90 p-4`}>
                 <div className="text-white">{alertMessage}</div>
                 <button onClick={handleCloseAlert} className="ml-2 text-white">
                     <DeleteIcon />
-                    <span className="mr-2 sr-only">Delete Button</span>
+                    <span className="sr-only mr-2">Delete Button</span>
                 </button>
             </div>
         );

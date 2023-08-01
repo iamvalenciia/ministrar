@@ -19,11 +19,6 @@ export function validatePassword(password: string) {
         return false;
     }
 
-    // Check for special characters
-    if (!/[!@#$%^&*.\-_]/.test(password)) {
-        return false;
-    }
-
     // Password is valid
     return true;
 }

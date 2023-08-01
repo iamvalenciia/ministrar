@@ -74,7 +74,7 @@ export function IconGithub(props: React.SVGProps<SVGSVGElement>) {
             rel="GitHub Icon">
             <span className="sr-only">Go to GitHub</span>
             <svg
-                className=" hover:fill-white cursor-pointer fill-black"
+                className=" cursor-pointer fill-black hover:fill-white"
                 viewBox="0 0 16 16"
                 height={IconstSize}
                 width={IconstSize}
@@ -93,7 +93,7 @@ export function IconInstagram(props: React.SVGProps<SVGSVGElement>) {
             rel="Instagram Icon">
             <span className="sr-only">Go to Instagram</span>
             <svg
-                className=" hover:fill-white cursor-pointer fill-black"
+                className=" cursor-pointer fill-black hover:fill-white"
                 viewBox="0 0 24 24"
                 height={IconstSize}
                 width={IconstSize}

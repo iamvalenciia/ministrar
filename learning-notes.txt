@@ -64,3 +64,11 @@ https://frontendmasters.com/courses/devops/
     - deposit 5 dollars in the bank account.
     - Get AWS authentication keys.
     - Setup the project with polumi aws.
+
+
+07/28/2023
+- use the plugin prettier-plugin-tailwindcss, to keep a order in the tailwindcss classes 
+(this going to save me of potencial bugs)
+
+- OpenAI, use tokens that are available for one week, then you need to login again.
+is not like facebook where they update the session token certain amount of time.

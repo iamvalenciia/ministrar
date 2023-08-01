@@ -6,31 +6,31 @@ import {
 import { FormEvent } from 'react';
 
 interface RegisterProps {
-    name: string;
-    username: string;
-    email: string;
-    password: string;
-    showPassword: boolean;
-    setName: (name: string) => void;
-    setUsername: (username: string) => void;
-    setEmail: (email: string) => void;
-    setPassword: (password: string) => void;
-    handleSubmit: (e: FormEvent) => void;
-    setShowPassword: (showPassword: boolean) => void;
+    registerForm: {
+        username: string;
+        email: string;
+        password: string;
+        name: string;
+        showPassword: boolean;
+        // Add other fields if necessary
+    };
+    setRegisterForm: React.Dispatch<
+        React.SetStateAction<{
+            username: string;
+            email: string;
+            password: string;
+            name: string;
+            showPassword: boolean;
+            // Add other fields if necessary
+        }>
+    >;
+    handleRegisterSubmit: (e: FormEvent) => void;
 }
 
 export default function Register({
-    name,
-    username,
-    email,
-    password,
-    setName,
-    setUsername,
-    setEmail,
-    setPassword,
-    handleSubmit,
-    showPassword,
-    setShowPassword
+    registerForm,
+    setRegisterForm,
+    handleRegisterSubmit
 }: RegisterProps) {
     const inputStyle =
         'w-full px-2 py-1 rounded-md focus:outline-none text-lg placeholder-gray-400';
@@ -41,23 +41,28 @@ export default function Register({
     return (
         <div className="flex flex-col items-center justify-center">
             <form
-                onSubmit={handleSubmit}
-                className="rounded-lg shadow-lg p-6"
+                onSubmit={handleRegisterSubmit}
+                className="rounded-lg p-6 shadow-lg"
                 style={{
                     background: 'rgba(255, 255, 255)',
                     border: '1px solid black',
                     color: 'black'
                 }}>
-                <h2 className="text-2xl font-bold mb-4">Register</h2>
+                <h2 className="mb-4 text-2xl font-bold">Register</h2>
                 <div className="mb-4">
-                    <label htmlFor="name" className="block sr-only">
+                    <label htmlFor="name" className="sr-only block">
                         name
                     </label>
                     <input
                         type="text"
                         id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={registerForm.name}
+                        onChange={(e) =>
+                            setRegisterForm({
+                                ...registerForm,
+                                name: e.target.value
+                            })
+                        }
                         className={inputStyle}
                         style={inputBackground}
                         placeholder="name"
@@ -65,14 +70,19 @@ export default function Register({
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="username" className="block sr-only">
+                    <label htmlFor="username" className="sr-only block">
                         Username
                     </label>
                     <input
                         type="text"
                         id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={registerForm.username}
+                        onChange={(e) =>
+                            setRegisterForm({
+                                ...registerForm,
+                                username: e.target.value
+                            })
+                        }
                         className={inputStyle}
                         style={inputBackground}
                         placeholder="username"
@@ -80,30 +90,40 @@ export default function Register({
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="emailRegister" className="block sr-only">
+                    <label htmlFor="emailRegister" className="sr-only block">
                         Email
                     </label>
                     <input
                         type="email"
                         id="emailRegister"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={registerForm.email}
+                        onChange={(e) =>
+                            setRegisterForm({
+                                ...registerForm,
+                                email: e.target.value
+                            })
+                        }
                         className={inputStyle}
                         style={inputBackground}
                         placeholder="email"
                         required
                     />
                 </div>
-                <div className="mb-4 relative">
-                    <label htmlFor="passwordRegister" className="block sr-only">
+                <div className="relative mb-4">
+                    <label htmlFor="passwordRegister" className="sr-only block">
                         Password
                     </label>
                     <input
-                        type={showPassword ? 'text' : 'password'}
+                        type={registerForm.showPassword ? 'text' : 'password'}
                         id="passwordRegister"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-12/12 px-2 py-1 rounded-md focus:outline-none text-lg placeholder-gray-400"
+                        value={registerForm.password}
+                        onChange={(e) =>
+                            setRegisterForm({
+                                ...registerForm,
+                                password: e.target.value
+                            })
+                        }
+                        className="w-12/12 rounded-md px-2 py-1 text-lg placeholder-gray-400 focus:outline-none"
                         style={inputBackground}
                         placeholder="password"
                         required
@@ -112,15 +132,20 @@ export default function Register({
                 <div className="flex items-center justify-between">
                     <button
                         type="submit"
-                        className="flex items-center bg-gray-950  text-gray-50 font-bold py-2 px-2 rounded-md hover:bg-gray-700 hover:text-gray-50 transition-colors">
+                        className="flex items-center rounded-md  bg-gray-950 px-2 py-2 font-bold text-gray-50 transition-colors hover:bg-gray-700 hover:text-gray-50">
                         <UserIcon className="mx-2" />
                         <span className="mr-2"> Sign Up </span>
                     </button>
                     <button
                         type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="h-full  bg-gray-400 font-bold rounded-md p-2 text-gray-950 transition-colors transform bg-opacity-30">
-                        {showPassword ? (
+                        onClick={() =>
+                            setRegisterForm({
+                                ...registerForm,
+                                showPassword: !registerForm.showPassword
+                            })
+                        }
+                        className="h-full  transform rounded-md bg-gray-400 bg-opacity-30 p-2 font-bold text-gray-950 transition-colors">
+                        {registerForm.showPassword ? (
                             <IconBasic_eye />
                         ) : (
                             <IconBasic_eye_closed />
